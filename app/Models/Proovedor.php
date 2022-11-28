@@ -9,4 +9,8 @@ class Proovedor extends Model
 {
     use HasFactory;
     protected $table ='proovedor';
+
+    public function librosp(){
+        $this -> hasMany('App\Models\Libro','proovedor_id','id');
+    }
 }

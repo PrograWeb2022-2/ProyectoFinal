@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Libro;
+use App\Models\Proovedor;
 
 class LibroController extends Controller
 {
@@ -28,7 +29,9 @@ class LibroController extends Controller
     public function create()
     {
         //
-        return view('libros.create');
+        $libros = new Libro();
+        $proovedores = Proovedor::pluck('nombre','id') ;
+        return view('libros.create',compact('libros','proovedores'));
     }
 
     /**

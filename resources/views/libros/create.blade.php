@@ -90,6 +90,14 @@
                   <div id="r_paginas"></div>
               </div>              
               <!-- PROOVEDOR ID x Foreign key -->
+              <div class="formulario-grupo" id="grupo-genero">
+              <label for="paginas" class="formulario-label"><strong> Proveedor </strong></label>
+              <div class="formulario-grupo-input">
+                <select>
+              </div>
+              <div id="r_proovedor"></div>
+              </div>
+              <br>
               <br>
                     <!-- <p class="formulario__input-error"> No coinciden las longitudes.</p> -->
                 <br>
