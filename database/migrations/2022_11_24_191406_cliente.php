@@ -18,7 +18,7 @@ class Cliente extends Migration
             $table ->id();
             $table -> string('nombre');
             $table -> string('apellido');
-            $table -> integer('celular');
+            $table -> string('celular');
             $table -> timestamps();
         });
     }

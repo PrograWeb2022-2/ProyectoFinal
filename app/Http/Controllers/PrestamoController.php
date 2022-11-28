@@ -16,7 +16,7 @@ class PrestamoController extends Controller
     {
         //
         $prestamo = Prestamo::all();
-        return $prestamo;
+        return view('prestamo.index')->with('prestamo',$prestamo);
     }
 
     /**
@@ -44,6 +44,7 @@ class PrestamoController extends Controller
         $prestamo -> cliente_id = $request -> cliente_id;
         $prestamo -> costo = $request -> costo;
         $prestamo -> save();
+        return redirect()->route('prestamo.index');
     }
 
     /**
@@ -85,7 +86,7 @@ class PrestamoController extends Controller
         $prestamo -> cliente_id = $request -> cliente_id;
         $prestamo -> costo = $request -> costo;
         $prestamo -> save();
-        return $prestamo;
+        return redirect()->route('prestamo.index');
     }
 
     /**

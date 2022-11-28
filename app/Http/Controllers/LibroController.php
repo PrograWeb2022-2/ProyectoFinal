@@ -15,8 +15,8 @@ class LibroController extends Controller
     public function index()
     {
         // 
-        $libro = Libro::all();
-        return view('libros.index');
+        $libros = Libro::all();
+        return view('libros.index')->with('libros',$libros);
 
     }
 
@@ -40,6 +40,14 @@ class LibroController extends Controller
     public function store(Request $request)
     {
         //
+        $libros = new Prestamo();
+        $libros -> nombre = $request -> nombre;
+        $libros -> autor = $request -> autor;
+        $libros -> genero = $request -> genero;
+        $libros -> paginas = $request -> paginas;
+        $libros -> proovedor_id = $request -> proovedor_id;
+        $libros -> save();
+        return redirect()->route('libros.index');
     }
 
     /**
@@ -91,5 +99,7 @@ class LibroController extends Controller
     public function destroy($id)
     {
         //
+        $libros = Libro::destroy($id);
+        return redirect()->route('libros.index');
     }
 }

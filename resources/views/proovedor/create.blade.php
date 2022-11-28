@@ -93,7 +93,10 @@
                     <!-- <p class="formulario__input-error"> No coinciden las longitudes.</p> -->
                 <br>
                 <br>
+                <div class="container text-center">
+                <a href="{{ route('proovedor.index') }}">
                 <button type="submit" class="btn btn-danger" id="boton" onclick="vacios()" >Enviar</button>
+                </div>
         </div>
         <div class="col-6 col-md-4"></div>
     </div>

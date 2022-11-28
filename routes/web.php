@@ -21,9 +21,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::post('store',[ProovedorController::class,'store'])->name('proovedor.store');
-
-Route::get('/proovedor', [App\Http\Controllers\ProovedorController::class, 'index'])->name('proovedor.listaproovedor');
+//Route::get('/proovedor', [App\Http\Controllers\ProovedorController::class, 'create'])->name('proovedor.listaproovedor');
 //Route::resource('proovedor','App\Http\Controllers\ProovedorController');
-
-Route::post('/store', [App\Http\Controllers\ProovedorController::class, 'store'])->name('proovedor.store');
-//Route::resource('proovedor','App\Http\Controllers\ProovedorController');
+//Route::get('/proovedor', [App\Http\Controllers\ProovedorController::class, 'index']);
+//Route::post('/store', [App\Http\Controllers\ProovedorController::class, 'store'])->name('proovedor.store');
+Route::resource('proovedor','App\Http\Controllers\ProovedorController');
+Route::resource('clientes','App\Http\Controllers\ClienteController');
+Route::resource('libros','App\Http\Controllers\LibroController');
+Route::resource('prestamo','App\Http\Controllers\PrestamoController');
