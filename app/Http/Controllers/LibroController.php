@@ -17,6 +17,7 @@ class LibroController extends Controller
     {
         // 
         $libros = Libro::all();
+
         return view('libros.index')->with('libros',$libros);
 
     }
@@ -29,10 +30,11 @@ class LibroController extends Controller
     public function create()
     {
         //
-        $libros = new Libro();
-        $proovedores = Proovedor::pluck('nombre','id') ;
-        return view('libros.create',compact('libros','proovedores'));
-    }
+
+        $proovedor = Proovedor::all();        
+        return view('libros.create',compact('proovedor'));
+}
+
 
     /**
      * Store a newly created resource in storage.
@@ -43,13 +45,21 @@ class LibroController extends Controller
     public function store(Request $request)
     {
         //
-        $libros = new Prestamo();
-        $libros -> nombre = $request -> nombre;
-        $libros -> autor = $request -> autor;
-        $libros -> genero = $request -> genero;
-        $libros -> paginas = $request -> paginas;
-        $libros -> proovedor_id = $request -> proovedor_id;
-        $libros -> save();
+        $request->validate([
+            'nombre'=> 'required',
+            'autor'=> 'required',
+            'genero'=> 'required',
+            'paginas'=> 'required',
+            'proovedor_id'=> 'required',
+        ]);
+        Libro::create($request->all());
+        /* $libros = new Libro(); */
+        /* $libros -> nombre = $request -> nombre; */
+        /* $libros -> autor = $request -> autor; */
+        /* $libros -> genero = $request -> genero; */
+        /* $libros -> paginas = $request -> paginas; */
+        /* $libros -> proovedor_id = $request -> proovedor_id; */
+        /* $libros -> save(); */
         return redirect()->route('libros.index');
     }
 

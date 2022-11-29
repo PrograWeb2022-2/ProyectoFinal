@@ -39,7 +39,7 @@
                 <td>{{$li -> autor}}</td>
                 <td>{{$li -> genero}}</td>
                 <td>{{$li -> paginas}}</td>
-                <td>{{$li -> proovedor}}</td>
+                <td>{{$li -> proovedores-> nombre}}</td>
                 <td>
                 <a href="{{route('libros.edit',$li-> id)}}">
                     <button class="btn btn-primary">Editar</button>

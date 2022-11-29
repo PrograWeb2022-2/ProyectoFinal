@@ -81,7 +81,7 @@
                     <div id="r_genero"></div>
                 </div>
                 <br>
-                <div class="formulario-grupo" id="grupo-celular">
+                <div class="formulario-grupo" id="grupo-paginas">
                   <label for="paginas" class="formulario-label"><strong> Paginas </strong></label>
                   <div class="formulario-grupo-input">
                       <input type="text" class="formulario-input" name="paginas" id="paginas" placeholder="paginas"
@@ -90,12 +90,16 @@
                   <div id="r_paginas"></div>
               </div>              
               <!-- PROOVEDOR ID x Foreign key -->
-              <div class="formulario-grupo" id="grupo-genero">
-              <label for="paginas" class="formulario-label"><strong> Proveedor </strong></label>
+              <div class="formulario-grupo" id="grupo-proovedor_id">
+              <label for="proovedor_id" class="formulario-label"><strong> Proveedor </strong></label>
               <div class="formulario-grupo-input">
-                <select>
+                <select class="form-control" id="proovedor_id" name="proovedor_id">
+                  @foreach($proovedor as $prove)
+                  <option value="{{$prove->id}}">{{$prove->nombre}}</option>
+                  @endforeach
+                </select>
               </div>
-              <div id="r_proovedor"></div>
+              <div id="r_proovedor_id"></div>
               </div>
               <br>
               <br>

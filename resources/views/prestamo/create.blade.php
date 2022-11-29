@@ -58,8 +58,12 @@
                 <div class="formulario-grupo" id="grupo-libro_id">
                     <label for="libro_id" class="formulario-label"><strong>Identificador del Libro ID</strong></label>
                     <div class="formulario-grupo-input">
-                        <input type="text" class="formulario-input" name="libro_id" id="libro_id" placeholder="libro_id" 
-                        title= "Letras y espacios, pueden llevar acentos." pattern="^[a-zA-ZÀ-ÿ\s]{1,40}$" required>  <!-- onchange() -->
+                    <select class="form-control" id="libro_id" name="libro_id">
+                    @foreach($libroid as $libro)
+                    <option value="{{$libro->id}}">{{$libro->nombre}}</option>
+                    @endforeach
+                    </select>
+                    <!-- onchange() -->
                     </div>
                     <div id="r_libro_id"></div>
                     <!-- <p class="formulario__input-error">El nombre tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p> -->
@@ -68,7 +72,11 @@
                 <div class="formulario-grupo" id="grupo-cliente_id">
                     <label for="cliente_id" class="formulario-label"><strong>Identificador del Cliente ID</strong></label>
                     <div class="formulario-grupo-input">
-                        <input type="text" class="formulario-input" name="cliente_id" id="cliente_id" placeholder="cliente_id" required>
+                    <select class="form-control" id="cliente_id" name="cliente_id">
+                    @foreach($clienteid as $clien)
+                    <option value="{{$clien->id}}">{{$clien->nombre}}</option>
+                    @endforeach
+                    </select>
                     </div>
                     <div id="r_cliente_id"></div>
                 </div>
@@ -104,3 +112,5 @@ Proyecto Final Tecnologías web - Andrea y Jose Miguel 2022 &copy; Copyright
 </div>
 </footer>
 </html>
+
+

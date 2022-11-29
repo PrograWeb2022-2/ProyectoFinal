@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Prestamo;
+use App\Models\Cliente;
+use App\Models\Libro;
 
 class PrestamoController extends Controller
 {
@@ -27,7 +29,9 @@ class PrestamoController extends Controller
     public function create()
     {
         //
-        return view('prestamo.create');
+        $libroid = Libro::all();
+        $clienteid = Cliente::all();
+        return view('prestamo.create',compact('libroid','clienteid'));
     }
 
     /**
