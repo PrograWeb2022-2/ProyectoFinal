@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use Barryvdh\DomPDF\PDF;
 
 
 class ClienteController extends Controller
@@ -69,7 +70,7 @@ class ClienteController extends Controller
     {
         //
         $clientes = Cliente::find($id);
-        return view('clientes.create');
+        return view('clientes.edit')->with('clientes',$clientes);
     }
 
     /**
@@ -82,11 +83,11 @@ class ClienteController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $cliente = Cliente :: findOrFail($request->id);
-        $cliente -> nombre = $request -> nombre;
-        $cliente -> apellido = $request -> apellido;
-        $cliente -> celular = $request -> celular;
-        $cliente -> save();
+        $clientes = Cliente::find($id);
+        $clientes -> nombre = $request -> nombre;
+        $clientes -> apellido = $request -> apellido;
+        $clientes -> celular = $request -> celular;
+        $clientes -> save();
         return redirect()->route('clientes.index');
     }
 
@@ -101,5 +102,11 @@ class ClienteController extends Controller
         //
         $cliente = Cliente::destroy($id);
         return redirect()->route('clientes.index');
+    }
+
+    public function generarPdf(){
+        $clientes = Cliente::all();
+        $pdf = \PDF::loadView('clientes.generarpdf',compact('clientes'));
+        return $pdf->download('clientes.pdf');
     }
 }

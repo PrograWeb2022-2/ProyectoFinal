@@ -15,12 +15,8 @@
  <br>
  <br>
     <div class="container text-center">
-    <a href="{{ route('libros.create') }}">
-<button class="btn btn-success">Crear cliente</button>
-<a href="{{ route('pdf_l') }}">
-<button class="btn btn-success">Generar Reporte</button>
         <table class="table table-bordered">
-            <thead>
+            <thead style="color: #FF3380">
                 <tr>
                 <th>Id</th>
                 <th>Nombre</th>
@@ -28,7 +24,6 @@
                 <th>Genero</th>
                 <th>Paginas</th>
                 <th>Proovedor</th>
-                <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,18 +35,6 @@
                 <td>{{$li -> genero}}</td>
                 <td>{{$li -> paginas}}</td>
                 <td>{{$li -> proovedores-> nombre}}</td>
-                <td>
-                <a href="{{route('libros.edit',$li-> id)}}">
-                    <button class="btn btn-primary">Editar</button>
-                </a>
-                <form action="{{ route('libros.destroy',$li-> id) }}" method="post">
-                @method('DELETE')
-                @csrf
-                <button type="submit" class="btn btn-danger">
-                Eliminar
-                </button>
-                </form> 
-                </td>
                 </tr>
                 @endforeach
             </tbody>

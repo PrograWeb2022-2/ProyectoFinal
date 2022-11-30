@@ -9,4 +9,8 @@ class Cliente extends Model
 {
     use HasFactory;
     protected $table ='cliente';
+
+    public function prestamos1(){
+        return $this -> hasMany(Prestamo::class,'id');
+    }
 }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro_Libros_MARAC</title>
+    <title>Registro_Prestamo_MARAC</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 
@@ -40,73 +40,63 @@
   </nav> -->
   <header> 
     <div class="p-3 mb-2 bg-danger text-white">
-      Registro Libros
+      Registro Prestamo
   </div>
   </header>
  <br>
  <br>
-  <h1 style="color: rgb(136, 37, 102); font-size: 60px; text-align: center;"> Registro Libros</h1>
+  <h1 style="color: rgb(136, 37, 102); font-size: 60px; text-align: center;"> Registro Prestamo </h1>
   <h2 style="text-align: center"> MARAC</h2>
   <br>
   <br>
   <div class="container text-center">
-    <form action="{{route('libros.store')}}" method="post">
+    <form action="{{route('prestamo.update',$prestamo->id)}}" method="post">
+    @method('PUT')
     @csrf
     <div class="row">
       <div class="col-6 col-md-4"></div>
         <div class="col-6 col-md-4">
-                <div class="formulario-grupo" id="grupo-nombre">
-                    <label for="nombre" class="formulario-label"><strong>Nombre del Libro</strong></label>
+                <div class="formulario-grupo" id="grupo-libro_id">
+                    <label for="libro_id" class="formulario-label"><strong>Identificador del Libro ID</strong></label>
                     <div class="formulario-grupo-input">
-                        <input type="text" class="formulario-input" name="nombre" id="nombre" placeholder="nombre" 
-                        title= "Letras y espacios, pueden llevar acentos." pattern="^[a-zA-ZÀ-ÿ\s]{1,40}$" required>  <!-- onchange() -->
+                    <select class="form-control" id="libro_id" name="libro_id" value="{{$prestamo->libro_id}}">
+                    @foreach($libroid as $libro)
+                    <option value="{{$libro->id}}">{{$libro->nombre}}</option>
+                    @endforeach
+                    </select>
+                    <!-- onchange() -->
                     </div>
-                    <div id="r_nombre"></div>
+                    <div id="r_libro_id"></div>
                     <!-- <p class="formulario__input-error">El nombre tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p> -->
                 </div>
                 <br>
-                <div class="formulario-grupo" id="grupo-autor">
-                    <label for="autor" class="formulario-label"><strong>Autor</strong></label>
+                <div class="formulario-grupo" id="grupo-cliente_id">
+                    <label for="cliente_id" class="formulario-label"><strong>Identificador del Cliente ID</strong></label>
                     <div class="formulario-grupo-input">
-                        <input type="text" class="formulario-input" name="autor" id="autor" placeholder="autor" required>
+                    <select class="form-control" id="cliente_id" name="cliente_id" value="{{$prestamo->cliente_id}}">
+                    @foreach($clienteid as $clien)
+                    <option value="{{$clien->id}}">{{$clien->nombre}}</option>
+                    @endforeach
+                    </select>
                     </div>
-                    <div id="r_autor"></div>
+                    <div id="r_cliente_id"></div>
                 </div>
                 <br>
-                <div class="formulario-grupo" id="grupo-genero">
-                    <label for="genero" class="formulario-label"><strong>Genero</strong></label>
-                    <div class="formulario-grupo-input">
-                        <input type="text" class="formulario-input" name="genero" id="genero" placeholder="genero" required>
-                    </div>
-                    <div id="r_genero"></div>
-                </div>
-                <br>
-                <div class="formulario-grupo" id="grupo-paginas">
-                  <label for="paginas" class="formulario-label"><strong> Paginas </strong></label>
+                <div class="formulario-grupo" id="grupo-costo">
+                  <label for="costo" class="formulario-label"><strong> Costo </strong></label>
                   <div class="formulario-grupo-input">
-                      <input type="text" class="formulario-input" name="paginas" id="paginas" placeholder="paginas"
-                  pattern="^[0-9]{1,40}$" title="Numeros" required>
+                      <input type="text" class="formulario-input" name="costo" id="costo" placeholder="costo"
+                  pattern="^[0-9]{1,40}$" title="Numeros"  value="{{$prestamo->costo}}"required>
                   </div>
-                  <div id="r_paginas"></div>
-              </div>              
-              <!-- PROOVEDOR ID x Foreign key -->
-              <div class="formulario-grupo" id="grupo-proovedor_id">
-              <label for="proovedor_id" class="formulario-label"><strong> Proveedor </strong></label>
-              <div class="formulario-grupo-input">
-                <select class="form-control" id="proovedor_id" name="proovedor_id">
-                  @foreach($proovedor as $prove)
-                  <option value="{{$prove->id}}">{{$prove->nombre}}</option>
-                  @endforeach
-                </select>
-              </div>
-              <div id="r_proovedor_id"></div>
-              </div>
-              <br>
+                  <div id="r_costo"></div>
+              </div>             
+              <!-- LIBRO ID x Foreign Key --> 
+              <!-- Cliente ID x Foreign Key --> 
               <br>
                     <!-- <p class="formulario__input-error"> No coinciden las longitudes.</p> -->
                 <br>
                 <br>
-                <button type="submit" class="btn btn-danger" id="boton" onclick="vacios()" >Enviar</button>
+                <button type="submit" class="btn btn-danger" id="boton" >Enviar</button>
         </div>
         <div class="col-6 col-md-4"></div>
     </div>
@@ -123,3 +113,5 @@ Proyecto Final Tecnologías web - Andrea y Jose Miguel 2022 &copy; Copyright
 </div>
 </footer>
 </html>
+
+

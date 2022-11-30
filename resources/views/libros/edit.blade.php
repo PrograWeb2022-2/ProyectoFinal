@@ -50,7 +50,8 @@
   <br>
   <br>
   <div class="container text-center">
-    <form action="{{route('libros.store')}}" method="post">
+    <form action="{{route('libros.update',$libro->id)}}" method="post">
+    @method('PUT')
     @csrf
     <div class="row">
       <div class="col-6 col-md-4"></div>
@@ -58,8 +59,8 @@
                 <div class="formulario-grupo" id="grupo-nombre">
                     <label for="nombre" class="formulario-label"><strong>Nombre del Libro</strong></label>
                     <div class="formulario-grupo-input">
-                        <input type="text" class="formulario-input" name="nombre" id="nombre" placeholder="nombre" 
-                        title= "Letras y espacios, pueden llevar acentos." pattern="^[a-zA-ZÀ-ÿ\s]{1,40}$" required>  <!-- onchange() -->
+                        <input type="text" class="formulario-input" name="nombre" id="nombre" value="{{$libro->nombre}}" placeholder="nombre" 
+                     title= "Letras y espacios, pueden llevar acentos." pattern="^[a-zA-ZÀ-ÿ\s]{1,40}$" required>  <!-- onchange() -->
                     </div>
                     <div id="r_nombre"></div>
                     <!-- <p class="formulario__input-error">El nombre tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p> -->
@@ -68,7 +69,7 @@
                 <div class="formulario-grupo" id="grupo-autor">
                     <label for="autor" class="formulario-label"><strong>Autor</strong></label>
                     <div class="formulario-grupo-input">
-                        <input type="text" class="formulario-input" name="autor" id="autor" placeholder="autor" required>
+                        <input type="text" class="formulario-input" name="autor" id="autor" placeholder="autor" value="{{$libro->autor}}" required>
                     </div>
                     <div id="r_autor"></div>
                 </div>
@@ -76,7 +77,7 @@
                 <div class="formulario-grupo" id="grupo-genero">
                     <label for="genero" class="formulario-label"><strong>Genero</strong></label>
                     <div class="formulario-grupo-input">
-                        <input type="text" class="formulario-input" name="genero" id="genero" placeholder="genero" required>
+                        <input type="text" class="formulario-input" name="genero" id="genero" value="{{$libro->genero}}" placeholder="genero" required>
                     </div>
                     <div id="r_genero"></div>
                 </div>
@@ -85,7 +86,7 @@
                   <label for="paginas" class="formulario-label"><strong> Paginas </strong></label>
                   <div class="formulario-grupo-input">
                       <input type="text" class="formulario-input" name="paginas" id="paginas" placeholder="paginas"
-                  pattern="^[0-9]{1,40}$" title="Numeros" required>
+                  pattern="^[0-9]{1,40}$" title="Numeros"  value="{{$libro->paginas}}" required>
                   </div>
                   <div id="r_paginas"></div>
               </div>              
@@ -93,7 +94,7 @@
               <div class="formulario-grupo" id="grupo-proovedor_id">
               <label for="proovedor_id" class="formulario-label"><strong> Proveedor </strong></label>
               <div class="formulario-grupo-input">
-                <select class="form-control" id="proovedor_id" name="proovedor_id">
+                <select class="form-control" id="proovedor_id" name="proovedor_id" value="{{$libro->proovedor_id}}">
                   @foreach($proovedor as $prove)
                   <option value="{{$prove->id}}">{{$prove->nombre}}</option>
                   @endforeach
@@ -106,7 +107,7 @@
                     <!-- <p class="formulario__input-error"> No coinciden las longitudes.</p> -->
                 <br>
                 <br>
-                <button type="submit" class="btn btn-danger" id="boton" onclick="vacios()" >Enviar</button>
+                <button type="submit" class="btn btn-danger" id="boton" >Enviar</button>
         </div>
         <div class="col-6 col-md-4"></div>
     </div>

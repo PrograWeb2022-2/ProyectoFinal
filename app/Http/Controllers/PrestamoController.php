@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Prestamo;
+use App\Models\Cliente;
+use App\Models\Libro;
+use Barryvdh\DomPDF\PDF;
 
 class PrestamoController extends Controller
 {
@@ -27,7 +30,9 @@ class PrestamoController extends Controller
     public function create()
     {
         //
-        return view('prestamo.create');
+        $libroid = Libro::all();
+        $clienteid = Cliente::all();
+        return view('prestamo.create',compact('libroid','clienteid'));
     }
 
     /**
@@ -69,6 +74,11 @@ class PrestamoController extends Controller
     public function edit($id)
     {
         //
+        $prestamo = Prestamo::find($id);
+        $libroid = Libro::all();
+        $clienteid = Cliente::all();
+        return view('prestamo.edit',compact('libroid','clienteid'))->with('prestamo',$prestamo);
+
     }
 
     /**
@@ -81,7 +91,7 @@ class PrestamoController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $prestamo = Prestamo :: findOrFail($request->id);
+        $prestamo = Prestamo :: find($id);
         $prestamo -> libro_id = $request -> libro_id;
         $prestamo -> cliente_id = $request -> cliente_id;
         $prestamo -> costo = $request -> costo;
@@ -101,5 +111,11 @@ class PrestamoController extends Controller
         $prestamo = Prestamo::find($id);
         $prestamo -> delete();
         return redirect()-> route('prestamo.index');
+    }
+
+    public function generarPdf(){
+        $prestamos = Prestamo::all();
+        $pdf = \PDF::loadView('prestamo.generarpdf',compact('prestamos'));
+        return $pdf->download('prestamos.pdf');
     }
 }

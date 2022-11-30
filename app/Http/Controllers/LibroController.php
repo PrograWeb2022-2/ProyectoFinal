@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Libro;
 use App\Models\Proovedor;
+use Barryvdh\DomPDF\PDF;
 
 class LibroController extends Controller
 {
@@ -17,6 +18,7 @@ class LibroController extends Controller
     {
         // 
         $libros = Libro::all();
+
         return view('libros.index')->with('libros',$libros);
 
     }
@@ -29,10 +31,11 @@ class LibroController extends Controller
     public function create()
     {
         //
-        $libros = new Libro();
-        $proovedores = Proovedor::pluck('nombre','id') ;
-        return view('libros.create',compact('libros','proovedores'));
-    }
+
+        $proovedor = Proovedor::all();        
+        return view('libros.create',compact('proovedor'));
+}
+
 
     /**
      * Store a newly created resource in storage.
@@ -43,13 +46,21 @@ class LibroController extends Controller
     public function store(Request $request)
     {
         //
-        $libros = new Prestamo();
-        $libros -> nombre = $request -> nombre;
-        $libros -> autor = $request -> autor;
-        $libros -> genero = $request -> genero;
-        $libros -> paginas = $request -> paginas;
-        $libros -> proovedor_id = $request -> proovedor_id;
-        $libros -> save();
+        $request->validate([
+            'nombre'=> 'required',
+            'autor'=> 'required',
+            'genero'=> 'required',
+            'paginas'=> 'required',
+            'proovedor_id'=> 'required',
+        ]);
+        Libro::create($request->all());
+        /* $libros = new Libro(); */
+        /* $libros -> nombre = $request -> nombre; */
+        /* $libros -> autor = $request -> autor; */
+        /* $libros -> genero = $request -> genero; */
+        /* $libros -> paginas = $request -> paginas; */
+        /* $libros -> proovedor_id = $request -> proovedor_id; */
+        /* $libros -> save(); */
         return redirect()->route('libros.index');
     }
 
@@ -73,6 +84,10 @@ class LibroController extends Controller
     public function edit($id)
     {
         //
+        $libro = Libro::find($id);
+        $proovedor = Proovedor::all();        
+        return view('libros.edit',compact('proovedor'))->with('libro',$libro);
+
     }
 
     /**
@@ -85,10 +100,12 @@ class LibroController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $libro = Libro :: findOrFail($request->id);
-        $libro -> nombre = $request -> nombre;
-        $libro -> apellido = $request -> apellido;
-        $libro -> celular = $request -> celular;
+        $libro = Libro::find($id);
+        $libro -> nombre = $request -> nombre; 
+        $libro -> autor = $request -> autor; 
+        $libro -> genero = $request -> genero; 
+        $libro -> paginas = $request -> paginas; 
+        $libro -> proovedor_id = $request -> proovedor_id; 
         $libro -> save();
         return redirect()->route('libros.index');
     }
@@ -104,5 +121,11 @@ class LibroController extends Controller
         //
         $libros = Libro::destroy($id);
         return redirect()->route('libros.index');
+    }
+
+    public function generarPdf(){
+        $libros = Libro::all();
+        $pdf = \PDF::loadView('libros.generarpdf',compact('libros'));
+        return $pdf->download('libros.pdf');
     }
 }
