@@ -59,10 +59,11 @@
      </div>
     </div>
 
-  <br>
+<footer style="bottom:0;position:absolute;width:100%">
   <div class="p-3 mb-2 text-black" style="background-color: rgb(207, 142, 177)">
   <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
   <p style="text-align: center">Libreria MARAC - Powered by Andrea & Jose Miguel2022 &copy; </p>
  </div>
 </div>
+</footer>
 @endsection

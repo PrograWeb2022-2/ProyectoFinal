@@ -32,13 +32,13 @@
                 <div class="row mb-3">
                   <label for="costo" class="col-md-4 col-form-label text-md-end">Costo</label>
                   <div class="col-md-6">
-                      <input type="text" class="formulario-control" name="costo" id="costo" required>
+                      <input type="text" class="formulario-control" name="costo" id="costo" placeholder="0" required>
                   </div>
               </div> 
                      <div class="row mb-0">
                          <div class="col-md-6 offset-md-4">
                          <a href="{{ route('prestamo.index') }}">
-                             <button type="submit" class="btn btn-primary">Actualizar</button>
+                             <button type="submit" class="btn btn-primary">Registrar</button>
                          </div>
                      </div>
                    </form>
@@ -48,11 +48,11 @@
      </div>
     </div>
 
-  <br>
+<footer style="bottom:0;position:absolute;width:100%">
   <div class="p-3 mb-2 text-black" style="background-color: rgb(207, 142, 177)">
   <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
   <p style="text-align: center">Libreria MARAC - Powered by Andrea & Jose Miguel2022 &copy; </p>
  </div>
 </div>
+</footer>
 @endsection
-
