@@ -15,20 +15,13 @@
  <br>
  <br>
     <div class="container text-center">
-    <a href="{{ route('clientes.create') }}">
-<button class="btn btn-success">
-    Crear cliente
-</button>
-<a href="{{ route('pdf_c') }}">
-<button class="btn btn-success">Generar Reporte</button>
         <table class="table table-bordered">
-            <thead>
+            <thead style="background-color: #FF3380">
                 <tr>
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Celular</th>
-                <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,18 +31,6 @@
                 <td>{{$clie -> nombre}}</td>
                 <td>{{$clie -> apellido}}</td>
                 <td>{{$clie -> celular}}</td>
-                <td>
-                <a href="{{route('clientes.edit',$clie-> id)}}">
-                    <button class="btn btn-primary">Editar</button>
-                </a>
-                <form action="{{ route('clientes.destroy',$clie-> id) }}" method="post">
-                @method('DELETE')
-                @csrf
-                <button type="submit" class="btn btn-danger">
-                Eliminar
-                </button>
-                </form> 
-                </td>
                 </tr>
                 @endforeach
             </tbody>

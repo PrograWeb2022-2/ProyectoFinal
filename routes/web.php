@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +21,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//Route::post('store',[ProovedorController::class,'store'])->name('proovedor.store');
-//Route::get('/proovedor', [App\Http\Controllers\ProovedorController::class, 'create'])->name('proovedor.listaproovedor');
-//Route::resource('proovedor','App\Http\Controllers\ProovedorController');
-//Route::get('/proovedor', [App\Http\Controllers\ProovedorController::class, 'index']);
-//Route::post('/store', [App\Http\Controllers\ProovedorController::class, 'store'])->name('proovedor.store');
-Route::resource('proovedor','App\Http\Controllers\ProovedorController');
-Route::resource('clientes','App\Http\Controllers\ClienteController');
-Route::resource('libros','App\Http\Controllers\LibroController');
-Route::resource('prestamo','App\Http\Controllers\PrestamoController');
+Route::resource('proovedor','App\Http\Controllers\ProovedorController')->middleware('auth');
+Route::resource('clientes','App\Http\Controllers\ClienteController')->middleware('auth');
+Route::resource('libros','App\Http\Controllers\LibroController')->middleware('auth');
+Route::resource('prestamo','App\Http\Controllers\PrestamoController')->middleware('auth');
+Route::get('download-pdf','App\Http\Controllers\ProovedorController@generarPdf')->name('pdf_p');
+Route::get('download-pdf1','App\Http\Controllers\LibroController@generarPdf')->name('pdf_l');
+Route::get('download-pdf2','App\Http\Controllers\PrestamoController@generarPdf')->name('pdf_pres');
+Route::get('download-pdf3','App\Http\Controllers\ClienteController@generarPdf')->name('pdf_c');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

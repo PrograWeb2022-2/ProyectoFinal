@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Libro;
 use App\Models\Proovedor;
+use Barryvdh\DomPDF\PDF;
 
 class LibroController extends Controller
 {
@@ -83,6 +84,10 @@ class LibroController extends Controller
     public function edit($id)
     {
         //
+        $libro = Libro::find($id);
+        $proovedor = Proovedor::all();        
+        return view('libros.create',compact('proovedor'));
+
     }
 
     /**
@@ -114,5 +119,11 @@ class LibroController extends Controller
         //
         $libros = Libro::destroy($id);
         return redirect()->route('libros.index');
+    }
+
+    public function generarPdf(){
+        $libros = Libro::all();
+        $pdf = \PDF::loadView('libros.generarpdf',compact('libros'));
+        return $pdf->download('libros.pdf');
     }
 }

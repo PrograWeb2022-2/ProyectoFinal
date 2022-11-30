@@ -16,9 +16,9 @@
  <br>
     <div class="container text-center">
     <a href="{{ route('prestamo.create') }}">
-<button class="btn btn-success">
-    Prestar
-</button>
+<button class="btn btn-success">Prestar</button>
+<a href="{{ route('pdf_pres') }}">
+<button class="btn btn-success">Generar Reporte</button>
         <table class="table table-bordered">
             <thead>
                 <tr>

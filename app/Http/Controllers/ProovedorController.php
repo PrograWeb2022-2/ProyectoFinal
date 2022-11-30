@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Proovedor;
+use Barryvdh\DomPDF\PDF;
 
 class ProovedorController extends Controller
 {
@@ -98,5 +99,11 @@ class ProovedorController extends Controller
     {
         $proovedor = Proovedor::destroy($id);
         return redirect()->route('proovedor.index');
+    }
+
+    public function generarPdf(){
+        $proovedor = Proovedor::all();
+        $pdf = \PDF::loadView('proovedor.generarpdf',compact('proovedor'));
+        return $pdf->download('proovedores.pdf');
     }
 }

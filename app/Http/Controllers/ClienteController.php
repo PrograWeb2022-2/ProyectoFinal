@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use Barryvdh\DomPDF\PDF;
 
 
 class ClienteController extends Controller
@@ -101,5 +102,11 @@ class ClienteController extends Controller
         //
         $cliente = Cliente::destroy($id);
         return redirect()->route('clientes.index');
+    }
+
+    public function generarPdf(){
+        $clientes = Cliente::all();
+        $pdf = \PDF::loadView('clientes.generarpdf',compact('clientes'));
+        return $pdf->download('clientes.pdf');
     }
 }

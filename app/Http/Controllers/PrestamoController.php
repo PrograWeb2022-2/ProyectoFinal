@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Prestamo;
 use App\Models\Cliente;
 use App\Models\Libro;
+use Barryvdh\DomPDF\PDF;
 
 class PrestamoController extends Controller
 {
@@ -73,6 +74,11 @@ class PrestamoController extends Controller
     public function edit($id)
     {
         //
+        $prestamo = Prestamo::find($id);
+        $libroid = Libro::all();
+        $clienteid = Cliente::all();
+        return view('prestamo.create',compact('libroid','clienteid'));
+
     }
 
     /**
@@ -105,5 +111,11 @@ class PrestamoController extends Controller
         $prestamo = Prestamo::find($id);
         $prestamo -> delete();
         return redirect()-> route('prestamo.index');
+    }
+
+    public function generarPdf(){
+        $prestamos = Prestamo::all();
+        $pdf = \PDF::loadView('prestamo.generarpdf',compact('prestamos'));
+        return $pdf->download('prestamos.pdf');
     }
 }
