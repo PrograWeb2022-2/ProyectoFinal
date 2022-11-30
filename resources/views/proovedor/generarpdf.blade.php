@@ -16,7 +16,7 @@
  <br>
     <div class="container text-center">
         <table class="table table-bordered">
-            <thead style="background-color: #FF3380">
+            <thead style="color: #FF3380">
                 <tr>
                 <th>Id</th>
                 <th>Nombre</th>

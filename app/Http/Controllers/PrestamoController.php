@@ -77,7 +77,7 @@ class PrestamoController extends Controller
         $prestamo = Prestamo::find($id);
         $libroid = Libro::all();
         $clienteid = Cliente::all();
-        return view('prestamo.create',compact('libroid','clienteid'));
+        return view('prestamo.edit',compact('libroid','clienteid'))->with('prestamo',$prestamo);
 
     }
 
@@ -91,7 +91,7 @@ class PrestamoController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $prestamo = Prestamo :: findOrFail($request->id);
+        $prestamo = Prestamo :: find($id);
         $prestamo -> libro_id = $request -> libro_id;
         $prestamo -> cliente_id = $request -> cliente_id;
         $prestamo -> costo = $request -> costo;

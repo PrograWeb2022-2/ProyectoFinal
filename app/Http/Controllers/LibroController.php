@@ -86,7 +86,7 @@ class LibroController extends Controller
         //
         $libro = Libro::find($id);
         $proovedor = Proovedor::all();        
-        return view('libros.create',compact('proovedor'));
+        return view('libros.edit',compact('proovedor'))->with('libro',$libro);
 
     }
 
@@ -100,10 +100,12 @@ class LibroController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $libro = Libro :: findOrFail($request->id);
-        $libro -> nombre = $request -> nombre;
-        $libro -> apellido = $request -> apellido;
-        $libro -> celular = $request -> celular;
+        $libro = Libro::find($id);
+        $libro -> nombre = $request -> nombre; 
+        $libro -> autor = $request -> autor; 
+        $libro -> genero = $request -> genero; 
+        $libro -> paginas = $request -> paginas; 
+        $libro -> proovedor_id = $request -> proovedor_id; 
         $libro -> save();
         return redirect()->route('libros.index');
     }

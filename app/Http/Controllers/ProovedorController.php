@@ -69,6 +69,8 @@ class ProovedorController extends Controller
     public function edit($id)
     {
         //
+        $proovedor = Proovedor::find($id);
+        return view('proovedor.edit')->with('proovedor',$proovedor);
     }
 
     /**
@@ -80,13 +82,14 @@ class ProovedorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $proovedor = Proovedor :: findOrFail($request->id);
+        //$proovedor = Proovedor::findOrFail($id);
+        $proovedor = Proovedor::find($id);
         $proovedor -> nombre = $request -> nombre;
         $proovedor -> apellido = $request -> apellido;
         $proovedor -> celular = $request -> celular;
         $proovedor -> nit = $request -> nit;
         $proovedor -> save();
-        return redirect()->route('proovedor.create');
+        return redirect()->route('proovedor.index');
     }
 
     /**
