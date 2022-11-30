@@ -18,6 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -31,5 +32,6 @@ Route::get('download-pdf2','App\Http\Controllers\PrestamoController@generarPdf')
 Route::get('download-pdf3','App\Http\Controllers\ClienteController@generarPdf')->name('pdf_c');
 
 Auth::routes();
+Route::get('/productos', [App\Http\Controllers\ProductoController::class, 'index'])->name('producto');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

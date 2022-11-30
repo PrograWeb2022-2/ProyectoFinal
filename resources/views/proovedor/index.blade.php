@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head> 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proovedor</title>
-</head>
-<body>
-<header> 
-    <div class="p-3 mb-2 bg-danger text-white">
-      Tabla de Proovedores
-  </div>
-  </header>
- <br>
+@extends('layouts.app')
+
+@section('content')
  <br>
     <div class="container text-center">
     <a href="{{ route('proovedor.create') }}">
         <button class="btn btn-success">Nuevo Proovedor</button>
     <a href="{{ route('pdf_p') }}">
     <button class="btn btn-success">Generar Reporte</button>
+<br>
+<br>
+<br>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -55,5 +46,12 @@
             </tbody>
         </table>
     </div>  
-</body>
-</html>
+<br>
+<footer style="bottom:0;position:absolute;width:100%">
+  <div class="p-3 mb-2 text-black" style="background-color: rgb(207, 142, 177)">
+  <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+  <p style="text-align: center">Libreria MARAC - Powered by Andrea & Jose Miguel2022 &copy; </p>
+ </div>
+</div>
+</footer>
+@endsection

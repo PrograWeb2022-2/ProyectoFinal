@@ -7,46 +7,45 @@
             <div class="card">
               <div class="card-header">Clientes</div>
                 <div class="card-body">
-                  <form action="{{route('clientes.update',$clientes->id)}}" method="post">
-                        @method('PUT')    
-                        @csrf
-                        <div class="row mb-3">
-                            <label for="nombre" class="col-md-4 col-form-label text-md-end">Nombre del Cliente</label>
-                            <div class="col-md-6">
-                                <input id=“nombre” type="text" class="form-control" name=“nombre” value="{{$clientes->nombre}}"/>
-                            </div>
-                        </div>
-
-                    <div class="row mb-3">
-                      <label for="apellido" class="col-md-4 col-form-label text-md-end">Apellido</label>
-                      <div class="col-md-6">
-                        <input id="apellido" type="text" class="form-control" name="apellido" value="{{$clientes->apellido}}"/>
-                      </div>
+                  <form method="post" action="{{route('clientes.update',$clientes->id)}}">
+                  @method('PUT')
+                  @csrf
+                <div class="row mb-3">
+                    <label for="nombre" class="col-md-4 col-form-label text-md-end">Nombre</label>
+                    <div class="col-md-6">
+                        <input type="text" class="formulario-control" name="nombre" id="nombre" placeholder="nombre" 
+                        value = "{{$clientes->nombre}}" pattern="^[a-zA-ZÀ-ÿ\s]{1,40}$" required> 
                     </div>
-                    <div class="row mb-3">
-                      <label for="celular" class="col-md-4 col-form-label text-md-end">Celular</label>
-                       <div class="col-md-6">
-                        <input id="celular" type="text" class="form-control" name="celular" value="{{$clientes->celular}}"/>
-                      </div>
-                    </div>
-                    <div class="row mb-0">
-                        <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
-                        </div>
-                    </div>
-                    </div>
-<div class="col-6 col-md-4"></div>
-</div>
-                  </form>
                 </div>
-              </div>
-            </div>
+                <div class="row mb-3">
+                    <label for="apellido" class="col-md-4 col-form-label text-md-end">Apellido</label>
+                    <div class="col-md-6">
+                        <input type="text" class="formulario-control" name="apellido" value = "{{$clientes->apellido}}" id="apellido" placeholder="apellido" required>
+                    </div>
+                </div>
+                <div class="row mb-3" id="grupo-celular">
+                  <label for="celular" class="col-md-4 col-form-label text-md-end">Celular</label>
+                  <div class="col-md-6">
+                      <input type="text" class="formulario-control" name="celular" id="celular"
+                      value = "{{$clientes->celular}}" pattern="^[0-9]{1,40}$" title="Numeros" required>
+                  </div>
+              </div>             
+                     <div class="row mb-0">
+                         <div class="col-md-6 offset-md-4">
+                             <button type="submit" class="btn btn-primary">Actualizar</button>
+                         </div>
+                     </div>
+                   </form>
+                 </div>
+               </div>
+             </div>
+     </div>
     </div>
-@endsection
-<br>
-  <div class="p-3 mb-2 bg-danger text-white">
-  <p style="text-align: center">
-Proyecto Final Tecnologías web - Andrea y Jose Miguel 2022 &copy; Copyright
-  </p>
-</div>
 
+  <br>
+<div class="p-3 mb-2 text-black" style="background-color: rgb(207, 142, 177)">
+  <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+  <p style="text-align: center">Libreria MARAC - Powered by Andrea & Jose Miguel2022 &copy; </p>
+ </div>
+</div>
+@endsection
